@@ -1,0 +1,105 @@
+<?php
+
+/**
+ *
+ * APWEB Framework (http://framework.artphoweb.com/)
+ * APWEB FW(tm) : Rapid Development Framework (http://framework.artphoweb.com/)
+ *
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @link      http://github.com/zebedeu/artphoweb for the canonical source repository
+ * @copyright (c) 2016.  APWEB  Software Technologies AO Inc. (http://www.artphoweb.com)
+ * @license   http://framework.artphoweb.com/license/new-bsd New BSD License
+ * @author    Marcio Zebedeu - artphoweb@artphoweb.com
+ * @version   1.0.0
+ */
+use FWAP\Helpers\Form;
+
+// use FWAP\Library\Cookie;
+?>
+
+
+<div class="container top">
+
+    <!-- Jumbotron -->
+    <div class="jumbotron">
+        <div class="container text-center">
+            <h1><?php echo $this->data['welcome_text']; ?>
+
+                <p><?php echo $this->data['welcome_message']; ?></p>
+                <div class="btn-group">
+                    <a href="" class="btn btn-lg btn-danger">ARTPHOTO</a>
+                    <a href="" class="btn btn-lg btn-info">GALLERY</a>
+                    <a href="" class="btn btn-lg btn-danger">ARTWEB</a>
+                </div>
+        </div><!-- End Container -->
+
+    </div><!-- End Jumbotron -->
+
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="panel panel-default text-center">
+                <div class="panel-body">
+                    <span class="glyphicon glyphicon-ok"></span>
+                    <h3><?php echo $this->data['inf_1']; ?></h3>
+                    <p class="panel text-justify"><?php echo $this->data['r_1']; ?></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="panel panel-default text-center">
+                <div class="panel-body">
+                    <span class="glyphicon glyphicon-star"></span>
+                    <h3><?php echo $this->data['inf_2']; ?></h3>
+                    <p class="panel text-justify"><?php echo $this->data['r_2']; ?></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="panel panel-default text-center">
+                <div class="panel-body">
+                    <span class="glyphicon glyphicon-play-circle"></span>
+                    <h3><?php echo $this->data['inf_3']; ?></h3>
+                    <p class="panel text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam, dolorum numquam perspiciatis nostrum voluptates harum sequi facilis velit laudantium consequuntur eum ducimus quos voluptatum eos pariatur, sint provident dignissimos quas.</p>
+                </div>
+            </div>
+        </div>
+    </div><!-- End Row --></section>
+</div>
+<!-- Call to action -->
+<section>
+    <div class="well">
+        <div class="container text-center">
+            <h3>Sobrescreve para mais informações</h3>
+            <p>Coloca aqui seu nome e email</p>
+
+            <?php
+            echo Form::open(['action' => ' ', 'class' => 'form-inline']);
+            ?>
+            <div class="form-group">
+                <label for="subscription">Sobrescreve</label>
+                <?php
+                echo Form::input(['type' => 'nome', 'class' => 'form-control', 'id' => 'subscription', 'placeholder' => 'Seu Nome']);
+                ?>
+            </div>
+            <div class="form-group">
+                <label for="email">Endereço de Email</label>
+                <?php
+                echo Form::input(['type' => 'email', 'class' => 'form-control', 'id' => 'subscription', 'placeholder' => 'Email']);
+                ?>
+            </div>
+            <?php
+            echo Form::button(['type' => 'submit', 'class' => 'btn btn-danger', 'id' => 'subscription', 'value' => 'Sobrescreve']);
+            ?>
+            <hr>
+            <?php
+            echo Form::close();
+            ?>
+
+        </div> <!-- container text-center -->
+    </div><!-- End Well -->
+</section><!-- Call to action -->
+
+
