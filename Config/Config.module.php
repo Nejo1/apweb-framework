@@ -19,7 +19,7 @@
 
 
 
-$MY_PROJECT_NAME = 'Freelancer';
+$MY_PROJECT_NAME = '';
 $HEADER_TITLE = 'Contrate Aqui e Agora!';
 $HEADER_DESCRIPTION = ''; 
 
@@ -34,10 +34,4 @@ define('DB_TYPE', 'mysql');
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', 'root');
-// define('DB_NAME', 'scool');
-// define('DB_NAME', 'Horas');
-// define('DB_NAME', 'apweb');
-// define('DB_NAME', 'scoolap');
-// define('DB_NAME', 'escola59');
-define('DB_NAME', 'Freelancer');
-// define('DB_NAME', 'vanju2');
+define('DB_NAME', '');
