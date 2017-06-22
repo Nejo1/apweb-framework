@@ -23,7 +23,7 @@
  * Class session whtem init(), set, get, Destroy, unsetValue, exist
  */
 
-namespace FWAP\Library;
+namespace FWAP\Helpers\Security;
 
 use FWAP\Helpers\Hook;
 
@@ -34,7 +34,7 @@ class Session {
      * É usado para ativar o incio de sassão do usuário.
      */
     public static function init() {
-        @session_start();
+            @session_start();
     }
 
     /**

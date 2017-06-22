@@ -15,9 +15,14 @@
  * @author    Marcio Zebedeu - artphoweb@artphoweb.com
  * @version   1.0.0
  */
+/**
+ * Created by PhpStorm.
+ * User: artphotografie
+ * Date: 08/12/16
+ * Time: 14:19
+ */
 
-
-namespace FWAP\Core\Variables;
+namespace FWAP\Core\Variablesssss;
 
 use ArrayObject;
 
@@ -29,7 +34,7 @@ class Variable extends ArrayObject {
         parent::__construct(
                 $variables, ArrayObject::ARRAY_AS_PROPS, 'ArrayIterator'
         );
-        $this->importObj($variables);
+//        $this->importObj($user, $variables);
     }
 
     public function __get($key) {

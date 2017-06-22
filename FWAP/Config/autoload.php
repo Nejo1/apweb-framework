@@ -1,4 +1,3 @@
-
 <?php
 
 /**
@@ -17,7 +16,7 @@
 spl_autoload_register(function($class) {
 
     if (file_exists(str_replace('\\', DS, $class) . '.php'))
-        require str_replace('\\', DS, $class) . '.php';
+        require_once str_replace('\\', DS, $class) . '.php';
 
     //  if (file_exists(str_replace('\\', '/', DIR_FILES . $class) . '.php'));
     //   require str_replace('\\', '/', DIR_FILES . $class) . '.php';

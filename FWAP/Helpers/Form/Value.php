@@ -15,32 +15,47 @@
  * @version   1.0.0
  */
 
-namespace FWAP\Core\FWCols\FWAPColections;
+namespace FWAP\Helpers\Form;
 
-/**
- * Description of RecursiveIteratorIterator
- *
- * @author artphotografie
- */
-class RecursiveIteratorIterator {
+use FWAP\Helpers\Security\Validate;
 
-    /**
-     * @var array
-     */
-    private $elements;
+class Value
+{
 
-    //put your code here
+    private $_value;
+    private $_post;
+    private $_teste;
 
-    public function __construct($elements) {
+    function __construct()
+    {
+         $this->_teste = new ClassHtml();
 
-        $this->elements = $elements;
+
     }
 
-    public function recursiveIteratorIterator() {
+    public function value($string){
 
-        $obj = new \RecursiveIteratorIterator(new \RecursiveArrayIterator($this->elements));
-       echo $obj->rewind();
-        return iterator_to_array($obj, TRUE);
+         $this->_value = $string;
+        return $this;
     }
+    public function getValue(){
+
+        echo  "value=".$this->_value.">";
+        return $this;
+    }
+
+    public function openForm($action, $method = "get")
+    {
+        echo "<form action=" .$action ."  enctype='multipart/form-data' method='". $method ."' >";
+        return $this;
+    }
+
+    public function closeForm()
+    {
+        echo "</form>" ;
+
+    }
+
+
 
 }

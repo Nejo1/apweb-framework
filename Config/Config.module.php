@@ -19,7 +19,7 @@
 
 
 
-$MY_PROJECT_NAME = 'Freelancer';
+$MY_PROJECT_NAME = '';
 $HEADER_TITLE = 'Contrate Aqui e Agora!';
 $HEADER_DESCRIPTION = ''; 
 

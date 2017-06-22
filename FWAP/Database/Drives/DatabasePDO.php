@@ -27,9 +27,9 @@ namespace FWAP\Database\Drives;
 use FWAP\Database\Drives\interfaceDatabase;
 use PDO;
 
-final class DatabasePDO extends PDO implements interfaceDatabase {
+ class DatabasePDO extends PDO implements interfaceDatabase {
 
-    private $linha;
+    private $columns;
 
     /* in plan
       private $join = array();
@@ -58,7 +58,7 @@ final class DatabasePDO extends PDO implements interfaceDatabase {
      * @param constant $fetchMode A PDO Fetch mode
      * @return mixed
      */
-    public function select($sql, $array = array(), $fetchMode = PDO::FETCH_ASSOC) {
+    public function selectManager($sql, $array = array(), $fetchMode = \PDO::FETCH_ASSOC) {
 
 
         $stmt = $this->prepare($sql);
@@ -67,6 +67,8 @@ final class DatabasePDO extends PDO implements interfaceDatabase {
             $stmt->bindValue("$key", $values);
         }
         $stmt->execute();
+//        $stmt->getColumnMeta(0);
+
         do {
             return $stmt->fetchAll($fetchMode);
         } while (
@@ -75,7 +77,30 @@ final class DatabasePDO extends PDO implements interfaceDatabase {
         $this->insert();
     }
 
-    /**
+     public function select($table, $fields = "*", $where = ' ', $order = '', $limit = null, $offset = null, $array = array(), $fetchMode =  PDO::FETCH_ASSOC)
+     {
+         $sql = ' SELECT ' . $fields . ' FROM ' . $table
+             . (($where) ? ' WHERE ' . $where : " ")
+             . (($limit) ? ' LIMIT ' . $limit : " ")
+             . (($offset && $limit) ? ' OFFSET ' . $offset : " ")
+             . (($order) ? ' ORDER BY ' . $order : " ");
+
+         $stmt = $this->prepare($sql);
+
+         foreach ($array as $key => $values) {
+             $stmt->bindValue("$key", $values);
+         }
+         $stmt->execute();
+
+
+         do {
+             return $stmt->fetchAll($fetchMode);
+         } while (
+             $stmt->nextRowset());
+     }
+
+
+     /**
      * @param $table da base de dados
      * @param $data recebido do array
      * @return bool
@@ -135,4 +160,45 @@ final class DatabasePDO extends PDO implements interfaceDatabase {
         return $this->exec("DELETE FROM $table WHERE $where LIMIT $limit");
     }
 
-}
+
+    public function get_Data_definitin($db){
+
+        $stmt = $this->prepare("SHOW COLUMNS FROM $db");
+
+        if($stmt->execute()) {
+            while ($row = $stmt->fetch()){
+              return  $this->columns[$row['Field']] = array('allow_null' => $row['Null'],
+                    'decimal' => NULL,
+                    'default' => $row['Default'],
+                    'extra' => $row['Extra'],
+                    'key' => $row['Key'],
+                    'length' => NULL,
+                    'name' => $row['Field'],
+                    'text' => NULL,
+                    'type' => $row['Type']);
+            }
+        }
+        ksort($this->columns);
+    }
+
+
+     public function createTable(String $table, array $fileds){
+         ksort($fileds);
+
+
+         $fieldNme = implode('`,', array_keys($fileds));
+         $fieldValues =  implode(', ', array_values($fileds[$fieldNme]));
+         echo $fieldNme.' '.$fieldValues;
+
+         $sql = "CREATE TABLE IF NOT EXISTS  apweb.$table ($fieldNme  $fieldValues)";
+         var_dump($sql);
+
+         $c = $this->exec($sql);
+         var_dump($c);
+
+     }
+
+
+
+
+ }

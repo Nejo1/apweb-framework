@@ -31,6 +31,8 @@ final class Bootstrap {
     private $_modelPath = 'Models';
     private $_errorPath = 'Error.php';
     private $_defaultFile = 'index.php';
+    private $_callback;
+
 
     /**
      *
@@ -87,6 +89,7 @@ final class Bootstrap {
     public function setDefaultFile($path) {
         $this->_defaultFile = trim($path, '/');
     }
+    
 
     /**
      * Fetches the $_GET from 'url'
@@ -119,7 +122,6 @@ final class Bootstrap {
             require $file;
 
             $this->_controller = new $this->_url[0];
-            $this->_controller->loadModel($this->_url[0], $this->_modelPath);
         } else {
             $this->_error();
             return false;

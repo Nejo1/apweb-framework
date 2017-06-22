@@ -1,7 +1,6 @@
 <?php
 
 /**
- *
  * APWEB Framework (http://framework.artphoweb.com/)
  * APWEB FW(tm) : Rapid Development Framework (http://framework.artphoweb.com/)
  *
@@ -10,21 +9,18 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @link      http://github.com/zebedeu/artphoweb for the canonical source repository
- * @copyright (c) 2016.  APWEB  Software Technologies AO Inc. (http://www.artphoweb.com)
+ * Copyright (c) 2017.  APWEB  Software Technologies AO Inc. (http://www.artphoweb.com)
  * @license   http://framework.artphoweb.com/license/new-bsd New BSD License
  * @author    Marcio Zebedeu - artphoweb@artphoweb.com
  * @version   1.0.0
  */
-/**
- * Created by PhpStorm.
- * User: artphotografie
- * Date: 2016/02/14
- * Time: 3:18 PM
- */
 
-namespace FWAP\Library;
+namespace FWAP\Helpers\Security;
 
 class Hash {
+    private $key;
+
+
 
     /**
      * @param $algo

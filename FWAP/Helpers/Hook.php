@@ -21,7 +21,7 @@ namespace FWAP\Helpers;
 class Hook {
 
     private static $header;
-    public $url;
+    private $url;
 
     public static function Header($header) {
         return self::$header = header('Location: ' . URL . "$header");

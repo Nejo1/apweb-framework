@@ -21,7 +21,7 @@ namespace FWAP\Helpers;
 use FWAP\Core\Controller\Controller;
 use FWAP\Core\Language\iLanguage;
 use FWAP\Core\Language\Language;
-use FWAP\Library\Session;
+use FWAP\Helpers\Security\Session;
 use FWAP\Helpers\interfaceUploads;
 
 class Uploads implements interfaceUploads {
@@ -65,11 +65,12 @@ class Uploads implements interfaceUploads {
                     if (empty($this->type)) {
                         return $errors[] = '<div class="btn btn-danger"> Por favor, escolhe 1 ficheiro para ser carregado</div>';
                     } else {
-                        $allowed = array('jpg', 'jpeg', 'gif', 'btm', 'png', 'txt', 'docx', 'doc', 'pdf', 'mp3');
+                        $allowed = array('jpg', 'JPG', 'jpeg', 'gif', 'btm', 'png', 'txt', 'docx', 'doc', 'pdf', 'mp3');
 
                         if (in_array($ext, $allowed) === false)
                             return $errors[] = '<div class="btn btn-danger">A extensao do ficheiro nao foi permitido </div>';
                     }
+//                              100000000
                     $max_size = 100000000;
                     if ($this->size > $max_size) {
                         return $errors[] = '<div class="btn btn-danger"> O tamanho do ficheiro é muito grande</div>';

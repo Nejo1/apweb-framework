@@ -26,5 +26,5 @@ namespace FWAP\Core\Controller;
 
 interface iController {
 
-    public function LoadModel(String $modelPath);
+    public function LoadModel(string $modelPath);
 }

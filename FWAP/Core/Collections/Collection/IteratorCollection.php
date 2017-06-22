@@ -1,9 +1,18 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * APWEB Framework (http://framework.artphoweb.com/)
+ * APWEB FW(tm) : Rapid Development Framework (http://framework.artphoweb.com/)
+ *
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @link      http://github.com/zebedeu/artphoweb for the canonical source repository
+ * Copyright (c) 2017.  APWEB  Software Technologies AO Inc. (http://www.artphoweb.com)
+ * @license   http://framework.artphoweb.com/license/new-bsd New BSD License
+ * @author    Marcio Zebedeu - artphoweb@artphoweb.com
+ * @version   1.0.0
  */
 
 namespace FWAP\Core\Collections\Collection;
@@ -40,8 +49,7 @@ class IteratorCollection implements \ArrayAccess {
     }
 
     public function count() {
-        return count($this->elements)
-        ;
+        return count($this->elements);
     }
 
     public function current() {
@@ -52,6 +60,9 @@ class IteratorCollection implements \ArrayAccess {
         return in_array($element, $this->elements, true);
     }
 
+    /**
+     * @return mixed
+     */
     public function next() {
         return next($this->elements);
     }
@@ -120,7 +131,7 @@ class IteratorCollection implements \ArrayAccess {
     public function add($value) {
         $this->elements[] = $value;
 
-        return true;
+        return $this;
     }
 
     public function set($key, $value) {

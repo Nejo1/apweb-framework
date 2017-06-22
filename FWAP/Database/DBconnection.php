@@ -21,7 +21,7 @@ namespace FWAP\Database;
 use FWAP\Database\Drives\interfaceDatabase;
 use PDO;
 
-final class DBconnection extends PDO {
+ class DBconnection extends PDO {
 
     /**
      * undocumented class variable
@@ -97,6 +97,7 @@ final class DBconnection extends PDO {
      * @author Marcio Zebedeu
      * */
     protected function _commit() {
+        $beginTransactioncount =0;
         if (!++$beginTransactioncount) {
             return parent::commit();
         }

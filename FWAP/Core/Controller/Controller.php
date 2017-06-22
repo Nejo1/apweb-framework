@@ -16,22 +16,21 @@
  * @version   1.0.0
  */
 /**
- * Created by PhpStorm.
- * User: artphotografie
- * Date: 2016/02/14
- * Time: 11:00 AM
- *
  * @property
  */
 
 namespace FWAP\Core\Controller;
 
+use FWAP\Core\Models\LoadModel;
+use FWAP\Core\View\iView;
 use FWAP\Core\View\View;
-use FWAP\Library\Session;
+use FWAP\Database\MysqlAdapter;
+use FWAP\Library\Bootstrap;
 use FWAP\Core\Language\Language;
 use FWAP\Core\Components\ServiceManager;
 use \FWAP\Database\Drives\DatabasePDO;
 use FWAP\Library\Log;
+use FWAP\Helpers\Security\Session;
 
 /**
  * @property iView iView desacopolamento da View
@@ -47,6 +46,7 @@ abstract class Controller implements iController {
     public $log;
     public $imagem;
     public $getServiceLocator;
+    public $route;
 
 
     /**
@@ -55,21 +55,16 @@ abstract class Controller implements iController {
      * View view estancia a class view
      * call method LoadeModel();
      */
-    public function __construct() {
+    public function __construct( ) {
 
         Session::init();
 
-       
-
         $this->view = new View();
-        $this->breadcrumb = new \FWAP\Library\Breadcrumb();
-        $this->language = new Language();
         $this->log = new Log('error.log');
+        $this->language = new Language();
         $this->language->Load('welcome');
         $this->route = new \FWAP\Library\Url();
         $this->imagem = new \FWAP\Helpers\Uploads();
-        
-         $this->getServiceLocator = new ServiceManager();
 
         $this->LoadModel();
     }
@@ -77,15 +72,16 @@ abstract class Controller implements iController {
     /**
      * LoadeModel to load  XModel
      */
-    public function LoadModel(String $modelPath = '/Models/') {
+    public function LoadModel(string $modelPath = '/Models/') {
         $model = get_class($this) . 'Model';
         $path = PV . APP . $modelPath . $model . '.php';
         if (file_exists($path)) {
             if (is_readable($path)) {
                 require_once $path;
 
+
                 $this->db = new \FWAP\Database\Drives\DatabasePDO(DB_TYPE, DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASS);
-                $this->model = new $model($this->db);
+                $this->model = new $model($this->db );
             }
         }
     }

@@ -16,11 +16,6 @@
  * @version   1.0.0
  */
 /**
- * Created by PhpStorm.
- * User: artphotografie
- * Date: 2016/02/14
- * Time: 11:14 AM
- *
  * @property  UserData propriedade gerada e usada para pegar dados do model
  */
 
@@ -41,7 +36,7 @@ class View implements iView {
      * @param $controller
      * @param $view
      */
-    public function render($controller, String $view) {
+    public function render($controller, String $view = NULL) {
         $this->controllers = get_class($controller);
 
         if (file_exists(VIEW)) {
@@ -57,20 +52,26 @@ class View implements iView {
                 Exception::notHeader();
             }
 
-            if (file_exists(VIEW . $this->controllers)) {
-                if (is_readable(VIEW . $this->controllers)) {
+            if(null == $view) {
+                require_once VIEW . $this->controllers . DS .'index.phtml';
 
-                    if (file_exists(VIEW . $this->controllers . '/' . $view . '.phtml')) {
-                        if (is_readable(VIEW . $this->controllers . '/' . $view . '.phtml')) {
 
-                            require_once VIEW . $this->controllers . '/' . $view . '.phtml';
+        }else {
+                if (file_exists(VIEW . $this->controllers)) {
+                    if (is_readable(VIEW . $this->controllers)) {
+
+                        if (file_exists(VIEW . $this->controllers . DS . $view . '.phtml')) {
+                            if (is_readable(VIEW . $this->controllers . DS . $view . '.phtml')) {
+
+                                require_once VIEW . $this->controllers . DS . $view . '.phtml';
+                            }
                         }
+                    } else {
+                        Exception::notIndex($this->controllers);
                     }
                 } else {
-                    Exception::notIndex($this->controllers);
+                    Exception::noPathinView($this->controllers);
                 }
-            } else {
-                Exception::noPathinView($this->controllers);
             }
             if (file_exists(VIEW . 'footer.phtml')) {
                 if (is_readable(VIEW . 'footer.phtml')) {
@@ -86,3 +87,5 @@ class View implements iView {
     }
 
 }
+
+

@@ -2,7 +2,7 @@
 {
     "name": "apweb-framework/apweb-framework",
     "type": "library",
-    "description": "Min framwork em mvc para PHP 7.0.0 ",
+    "description": "Min framwork em mvc para PHP 7.0.0 ou superior",
     "keywords": ["framwork","mvc"],
     "homepage": "https://github.com/APWEB-Framework/APWEB-Framework",
     "license": "MIT",

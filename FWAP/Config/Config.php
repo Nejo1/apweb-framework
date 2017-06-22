@@ -117,7 +117,7 @@ define('HTTPS', 'https://' . $_SERVER['HTTP_HOST'] . rtrim(dirname($_SERVER['PHP
  *
  *
  */
-define('DIR_FWAP', URL . PV . APP . DS);
+//define('DIR_FWAP', URL . PV . APP . DS);
 
 
 /**

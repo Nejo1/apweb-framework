@@ -28,14 +28,24 @@ use PDO;
 
 interface interfaceDatabase {
 
+
     /**
+     * @param $sql
+     * @param array $array
+     * @param int $fetchMode
+     * @return mixed
+     */
+    public function selectManager($sql, $array = array(), $fetchMode = PDO::FETCH_ASSOC);
+
+
+        /**
      * select
      * @param string $sql An SQL string
      * @param array $array Paramters to bind
      * @param constant $fetchMode A PDO Fetch mode
      * @return mixed
      */
-    public function select($sql, $array = array(), $fetchMode);
+    public function select($table, $fields ="*", $where = ' ', $order='', $limit=null, $offset=null,  $array = array(), $fetchMode);
 
     /**
      * @param $table da base de dados
@@ -53,4 +63,8 @@ interface interfaceDatabase {
     public function update($table, $data, $where);
 
     public function delete($table, $where, $limit);
-}
+    public function get_Data_definitin($db);
+    public function createTable(String $table, array $fileds);
+
+
+    }

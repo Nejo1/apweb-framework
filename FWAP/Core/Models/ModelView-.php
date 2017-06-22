@@ -16,20 +16,25 @@
  * @version   1.0.0
  */
 
+namespace FWAP\Core\Models;
 
-namespace FWAP\Core\Variables;
-
+use FWAP\Core\Controller\iController;
 use ArrayObject;
+use FWAP\Core\View\iView;
 
-class Variable extends ArrayObject {
+class ModelView extends ArrayObject implements iController {
 
+    private $iView;
     private $___class = null;
 
-    public function __construct(array $variables = array()) {
+    public function __construct(array $variables = array(), iView $iView) {
         parent::__construct(
                 $variables, ArrayObject::ARRAY_AS_PROPS, 'ArrayIterator'
         );
-        $this->importObj($variables);
+//        $this->importObj($user, $variables);
+        $this->iView = $iView;
+
+        $this->LoadModel();
     }
 
     public function __get($key) {
@@ -70,6 +75,15 @@ class Variable extends ArrayObject {
             $o[$key] = is_object($value) ? (array) $value : $value;
         }
         return $o;
+    }
+
+    public function LoadModel($modelPath = '/Models/') {
+        $model = get_class($this) . '_model';
+        $path = PV . APP . $modelPath . $model . '.php';
+        if (file_exists($path)) {
+            require_once $path;
+            $this->model = new $model();
+        }
     }
 
 }
