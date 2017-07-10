@@ -30,14 +30,12 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 require_once "FWAP/Config/config.php";
-// require_once "FWAP/Config/autoload.php";
 spl_autoload_register(function($class) {
 
     if (file_exists(str_replace('\\', DS, $class) . '.php'))
         require str_replace('\\', DS, $class) . '.php';
 
-    //  if (file_exists(str_replace('\\', '/', DIR_FILES . $class) . '.php'));
-    //   require str_replace('\\', '/', DIR_FILES . $class) . '.php';
+  
 });
 
 /**
